@@ -15,15 +15,6 @@ class Denoiser_App:
         self.low_pass = low_pass
         self.high_pass = high_pass
 
-    def sound_card(self):
-        # Print sound data details
-        data_info = (f'x data type: {type(self.x)}\n'
-                     f'sr (sampling rate) data type: {type(self.sr)}\n'
-                     f'x length: {len(self.x)} integers\n'
-                     f'sr (sampling rate): {self.sr} Hz\n'
-                     f'The sample sound clip is {len(self.x)/self.sr:.2f} seconds long')
-        return data_info
-
     def filter_noise(self):
         # Compute the spectrum and filter the sound
         self.spectrum = fft(self.x)
