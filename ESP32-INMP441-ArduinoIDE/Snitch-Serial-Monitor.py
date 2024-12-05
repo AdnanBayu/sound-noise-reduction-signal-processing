@@ -22,6 +22,7 @@ def save_serial_data():
                     file.write(f"{line}\n")  # Write to file
                     print(line)  # Optionally print to console
 
+    #stop catching data by pressing ctrl + c on terminal
     except KeyboardInterrupt:
         print("\nData saving stopped.")
     except Exception as e:

@@ -31,7 +31,7 @@ i2s_pin_config_t i2s_mic_pins = {
 };
 
 unsigned long startTime;
-const unsigned long totalSamples = SAMPLE_RATE * 10;  // 10 seconds * 10,000 Hz = 100,000 samples
+const unsigned long totalSamples = SAMPLE_RATE * 10;  // 10,000 Hz * 10 seconds = 100,000 samples
 unsigned long samplesCaptured = 0;
 
 void setup() {

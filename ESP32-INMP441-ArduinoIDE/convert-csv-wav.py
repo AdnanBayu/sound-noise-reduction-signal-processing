@@ -3,8 +3,8 @@ import wave
 import numpy as np
 import struct
 
-CSV_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-Mic-Input-ArduinoIDE\sound_samples2.csv"
-WAV_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-Mic-Input-ArduinoIDE\output_sound.wav"
+CSV_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-Mic-Input-ArduinoIDE\sound_samples.csv"
+WAV_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-Mic-Input-ArduinoIDE\sound_sample.wav"
 
 def csv_to_wav():
     # Read the audio samples from the CSV file
