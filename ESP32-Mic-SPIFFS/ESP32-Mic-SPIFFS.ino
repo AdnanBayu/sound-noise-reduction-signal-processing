@@ -27,25 +27,6 @@ void loop(){
 
 }
 
-void SPIFFSInit(){
-  if(!SPIFFS.begin(true)){
-    Serial.println("SPIFFS initialization failed!");
-    while(1) yield();
-  }
-
-  SPIFFS.remove(filename);
-  file = SPIFFS.open(filename, FILE_WRITE);
-  if(!file){
-    Serial.println("File is not avalable!...");
-  }
-
-  byte header[headerSize];
-  wavHeader(header, FLASH_RECORD_SIZE);
-
-  file.write(header, headerSize);
-  listSPIFFS();
-}
-
 void i2sInit(){
   i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
@@ -190,4 +171,23 @@ void listSPIFFS(void){
   Serial.println(FPSTR(line));
   Serial.println();
   delay(1000);
+}
+
+void SPIFFSInit(){
+  if(!SPIFFS.begin(true)){
+    Serial.println("SPIFFS initialization failed!");
+    while(1) yield();
+  }
+
+  SPIFFS.remove(filename);
+  file = SPIFFS.open(filename, FILE_WRITE);
+  if(!file){
+    Serial.println("File is not avalable!...");
+  }
+
+  byte header[headerSize];
+  wavHeader(header, FLASH_RECORD_SIZE);
+
+  file.write(header, headerSize);
+  listSPIFFS();
 }

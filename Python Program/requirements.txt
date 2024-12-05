@@ -1,7 +1,0 @@
-pandas
-numpy == 2.0.0
-matplotlib
-librosa
-IPython
-soundfile
-scipy

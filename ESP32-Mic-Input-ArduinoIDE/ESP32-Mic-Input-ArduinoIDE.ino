@@ -3,16 +3,16 @@
 
 // I2S configuration
 #define SAMPLE_BUFFER_SIZE 512
-#define SAMPLE_RATE 44100  // 44.1 kHz
+#define SAMPLE_RATE 10000
 #define I2S_MIC_CHANNEL I2S_CHANNEL_FMT_ONLY_LEFT
 #define I2S_MIC_SERIAL_CLOCK GPIO_NUM_2
-#define I2S_MIC_LEFT_RIGHT_CLOCK GPIO_NUM_25
-#define I2S_MIC_SERIAL_DATA GPIO_NUM_26
+#define I2S_MIC_LEFT_RIGHT_CLOCK GPIO_NUM_15
+#define I2S_MIC_SERIAL_DATA GPIO_NUM_13
 
 i2s_config_t i2s_config = {
     .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
     .sample_rate = SAMPLE_RATE,
-    .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,
+    .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,  // Use 16-bit sample size
     .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
     .communication_format = I2S_COMM_FORMAT_I2S,
     .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
@@ -30,20 +30,35 @@ i2s_pin_config_t i2s_mic_pins = {
     .data_in_num = I2S_MIC_SERIAL_DATA
 };
 
+unsigned long startTime;
+const unsigned long totalSamples = SAMPLE_RATE * 10;  // 10 seconds * 10,000 Hz = 100,000 samples
+unsigned long samplesCaptured = 0;
+
 void setup() {
   Serial.begin(115200);
   i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL);
   i2s_set_pin(I2S_NUM_0, &i2s_mic_pins);
+  startTime = millis(); // Record the start time
 }
 
-int32_t raw_samples[SAMPLE_BUFFER_SIZE];
-void loop() {
-  size_t bytes_read = 0;
-  i2s_read(I2S_NUM_0, raw_samples, sizeof(int32_t) * SAMPLE_BUFFER_SIZE, &bytes_read, portMAX_DELAY);
-  int samples_read = bytes_read / sizeof(int32_t);
+int16_t raw_samples[SAMPLE_BUFFER_SIZE];  // 16-bit sample buffer
 
+void loop() {
+  if (samplesCaptured >= totalSamples) {
+    Serial.println("Recording stopped after capturing 100,000 samples.");
+    while (true) {
+      // Stop the loop and do nothing after capturing all samples
+    }
+  }
+
+  size_t bytes_read = 0;
+  // Read the audio data from the I2S bus
+  i2s_read(I2S_NUM_0, raw_samples, sizeof(int16_t) * SAMPLE_BUFFER_SIZE, &bytes_read, portMAX_DELAY);
+  int samples_read = bytes_read / sizeof(int16_t);
+
+  // Output the captured data (16-bit samples)
   for (int i = 0; i < samples_read; i++) {
-    // Send each sample as raw 32-bit data
-    Serial.write((uint8_t*)&raw_samples[i], sizeof(int32_t));
+    Serial.println(raw_samples[i]);  // Print 16-bit samples
+    samplesCaptured++;
   }
 }
