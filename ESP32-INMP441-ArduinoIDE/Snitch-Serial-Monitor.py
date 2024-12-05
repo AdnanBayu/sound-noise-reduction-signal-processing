@@ -1,9 +1,11 @@
+## THIS PROGRAM IS FOR CATCH DATA FROM SERIAL MONITOR THEN SAVE IT AS CSV FILE
+
 import serial
 
 # Replace 'COM3' with the correct serial port of your ESP32
 SERIAL_PORT = 'COM3'
-BAUD_RATE = 115200
-OUTPUT_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-Mic-Input-ArduinoIDE\sound_samples.csv"  # Use an absolute path
+BAUD_RATE = 115200      # make sure the same with .ino code baud rate
+OUTPUT_FILE = r"C:\Users\ASUS\Documents\GitHub\sound-noise-reduction-signal-processing\ESP32-INMP441-ArduinoIDE\sound_samples.csv"  # Use an absolute path
 
 def save_serial_data():
     try:

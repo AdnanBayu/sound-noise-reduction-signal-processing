@@ -1,3 +1,5 @@
+## THIS PROGRAM IS FOR CONVERT CSV DATA OF SOUND CAPTURED FROM INMP441-ESP32 TO WAV SOUND FILE
+
 import csv
 import wave
 import numpy as np
