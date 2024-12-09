@@ -31,7 +31,7 @@ i2s_pin_config_t i2s_mic_pins = {
 };
 
 unsigned long startTime;
-const unsigned long totalSamples = SAMPLE_RATE * 10;  // 10,000 Hz * 10 seconds = 100,000 samples
+const unsigned long totalSamples = SAMPLE_RATE * 5;  // 10,000 Hz * 5 seconds = 50,000 samples
 unsigned long samplesCaptured = 0;
 
 void setup() {
@@ -45,7 +45,7 @@ int16_t raw_samples[SAMPLE_BUFFER_SIZE];  // 16-bit sample buffer
 
 void loop() {
   if (samplesCaptured >= totalSamples) {
-    Serial.println("Recording stopped after capturing 100,000 samples.");
+    Serial.println("Recording stopped after capturing 50,000 samples.");
     while (true) {
       // Stop the loop and do nothing after capturing all samples
     }
