@@ -76,9 +76,12 @@ void loop() {
 
     if(k % 3 == 0){
     // Sinyal Output Ditampilkan
-    Serial.print(2*xn);
+    Serial.print(xn);
     Serial.print(" ");
-    Serial.println(2*yn);
+    Serial.println(yn);
+    // Serial.print(2*xn);
+    // Serial.print(" ");
+    // Serial.println(2*yn);
   }
   k = k+1;
     samplesCaptured++;
