@@ -11,6 +11,25 @@ Several activity conducted on this project to analyzed signal and conduct filter
 - Filtered non continous signal using STFT and Low pass filter
 - Filtered continous signal using butterworth filter coefficient
 
+## Dependencies
+for python program
+```bash
+numpy
+scipy
+librosa
+matplotlib
+soundfile
+pandas
+math
+sounddevice
+IPython
+```
+
+for arduino program
+```bash
+#include <driver/i2s.h>
+```
+
 ## System block diagram
 ![Noise Reduction Mic drawio](https://github.com/user-attachments/assets/797271f0-5fc0-4daa-89e4-b3c7f174b5db)
 
