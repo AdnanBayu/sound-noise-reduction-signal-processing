@@ -34,12 +34,14 @@ for arduino program
 ![Noise Reduction Mic drawio](https://github.com/user-attachments/assets/797271f0-5fc0-4daa-89e4-b3c7f174b5db)
 
 ## Directory explanation
-- Butterworth-Audible-Sound : test butterworth filter coefficient to offline audio and save as WAV
-- ESP32-INMP441-ArduinoIDE : get INMP441 audio data to ESP32, design butterworth filter coefficient and apply it to ESP32, proofing ESP32 bad for audio capturing
-- Filter-Butterworth-Tes : apply butterworth filter coefficient to continous audio data captured by ESP32
-- Filter-Coeff-Noise-Only : finding butterworth filter coefficient of dataset sound
-- Filter-Coefficient-Generated-Sinusoid-Signals : apply butterworth filter coefficient to controlled generated signal
-- STFT Voice Processing : analyze sound in frequency domain using STFT and filtered it using regular low pass filter
+- Butterworth-Offline-Sound : test butterworth filter coefficient to offline audio and save as WAV
+- Butterworth-Complete/Design-Filter : design butterworth filter on audio signal, and applied it to realtime signal captured on ESP32 by INMP441
+- Butterworth-Coefficient-on-ESP32 : apply butterworth filter coefficient to offline (non realtime) audio signal
+- Filter-Coeff-Noise-Only : apply butterworth filter coefficient to noise only, to prove it could remove all the noise
+- Filter-Coefficient-Generated-Sinusoid-Signals : apply butterworth filter coefficient to generated and controlled sinusoid signal
+- Low Pass FFT and STFT Voice Processing : conduct regular low pass filter to signal after analyzed it using FFT and STFT
+- Proof ESP32 Sucks for Sound : proving that ESP32 performs bad on capturing audio signal
+- Read-INMP441-ESP32-ArduinoIDE : read audio from INMP441 to ESP32
 
 ## Non technical documentation
 There are several pdf file for progress report (mid exam and final exam).
